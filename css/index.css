@@ -42,6 +42,7 @@ h1 {
 
 section {
     padding: 20px;
+    padding-top: 0px;
     margin: 20px;
     background-color: rgba(179, 178, 180, 0.2);
     border: 2px dotted black;
@@ -54,12 +55,15 @@ h2 {
     font-weight: normal;
     color: rgb(90, 2, 109);
     text-decoration: underline double;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: 1.5px;
     margin-bottom: 20px;
 }
 
+#about li{
+    font-style: italic;
+}
 
-#Experience .experience-item {
+#experience .experience-item {
     background-color: rgba(255, 255, 255, 0.4);
     padding: 15px;
     margin-bottom: 15px;
@@ -67,41 +71,41 @@ h2 {
     border: 2px solid rgb(90, 2, 109);
 }
 
-#Experience .job-title {
+#experience .job-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
 
-#Experience h3 {
+#experience h3 {
     margin: 0;
     color: rgb(90, 2, 109);
     font-size: 20px;
 }
 
-#Experience .job-date {
+#experience .job-date {
     color: rgb(6, 68, 6);
     font-style: italic;
     margin: 0;
 }
 
-#Experience .job-description {
+#experience .job-description {
     margin: 5px 0 0 0;
     color: rgb(6, 68, 6);
 }
 
 
-#Connect {
+#connect {
     text-align: center;
 }
 
-#Connect .connect-links {
+#connect .connect-links {
     display: flex;
     justify-content: center;
 }
 
-#Connect a {
+#connect a {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,15 +119,15 @@ h2 {
     background-color: rgba(255, 255, 255, 0.3);
 }
 
-#Connect a:hover {
+#connect a:hover {
     background-color: rgba(255, 255, 255, 0.6);
 }
 
-#Connect a img {
+#connect a img {
     margin-bottom: 8px;
 }
 
-#Connect a span {
+#connect a span {
     font-size: 16px;
 }
 
@@ -131,7 +135,7 @@ footer {
    text-align: center; 
 }
 
-#Skills ul {
+#skills ul {
     display:flex;
     align-items: center;
     justify-content:space-evenly;
@@ -139,12 +143,41 @@ footer {
     padding: 10px;
 }
 
-#Skills li {
+#skills li {
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
-    list-style-type: circle;
-    list-style-position: inside;
+    list-style: none;
     margin: 5px;
     padding: 20px;
     box-shadow: 0px 3px 5px rgba(0,0,0,0.3);
 }
+
+form {
+    background-color:rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    margin: 20px;
+}
+
+form label{
+    display: block;
+    margin-bottom: 2px;
+    font-weight: 700;
+
+}
+
+form input,
+form textarea {
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing:border-box;
+
+}
+
+button{
+    display: block;
+    width: 100px;
+    padding: 5px;
+    font-weight: 700;
+    margin: 0 auto;
+}
+
