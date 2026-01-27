@@ -47,7 +47,7 @@ section {
     background-color: rgba(179, 178, 180, 0.2);
     border-radius: 5px;
     border-style: double;
-    box-shadow: 0px 3px 5px rgb(90, 2, 109, 0.5);
+    box-shadow: 10px 8px 4px rgba(2, 125, 51, 0.3);
 }
 
 
@@ -58,6 +58,31 @@ h2 {
     text-decoration: underline double;
     text-decoration-thickness: 1.5px;
     margin-bottom: 20px;
+}
+
+#about .about-row {
+    display:flex;
+    align-items:flex-start;
+    gap: 10px;
+}
+
+
+#about .philosophy {
+    justify-self: center;
+    margin-top: 30px;
+}
+
+.philosophy p {
+    font-size:20px;
+    font-weight: bold;
+    text-decoration:underline double;
+    text-decoration-thickness: 1.5px;
+}
+
+.philosophy li {
+    font-weight: bold;
+    font-style: italic;
+    list-style: circle;
 }
 
 #experience .experience-item {
@@ -146,8 +171,9 @@ footer {
     list-style: none;
     margin: 5px;
     padding: 20px;
-    border: 1px solid rgb(90, 2, 109);
-    box-shadow: 0px 3px 5px rgb(90, 2, 109, 0.5);
+    border: 2px solid rgb(73, 11, 108);
+    box-shadow: 0px 3px 5px rgba(115, 24, 135, 0.5);
+    font-weight: bold;
 }
 
 form {
@@ -205,19 +231,10 @@ form button{
     padding: 10px;
     width: 200px;
     border-radius: 5px;
-    border: 1px solid rgb(90, 2, 109);
+    border: 2px solid rgb(90, 2, 109);
     box-shadow: 0px 3px 5px rgb(90, 2, 109, 0.5);
 }
 
 
-.philosophy {
-    font-size:20px;
-    font-weight: bold;
-    text-decoration:underline wavy;
-    text-decoration-thickness: 1.15px;
-}
 
-.philosophy-items {
-    font-weight: bold;
-    font-style: italic;
-}
+
