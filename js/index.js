@@ -29,13 +29,6 @@ const messageForm = document.querySelector('form[name="leave_message"]');
 function onSubmit(event){
     event.preventDefault();
 
-    //stretch goal to hide/show message list
-    function showList () {
-    if (messageList.hasChildNodes()) { 
-        messageSection.hidden = false;
-     } else {messageSection.hidden = true;}
-    };
-
     const name = event.target.usersName.value;
     const email = event.target.usersEmail.value;
     const message = event.target.usersMessage.value;
@@ -47,14 +40,21 @@ function onSubmit(event){
     const messageSection = document.getElementById("messages");
     const messageList = messageSection.querySelector("ul");
     const newMessage = document.createElement("li");
-    newMessage.innerHTML = `<a href="mailto:${email}">${name}</a> <span>${message}</span>`;
+    newMessage.innerHTML = `<a href="mailto:${email}">${name}</a>: <span>${message}</span>`;
+
+     //stretch goal to hide/show message list
+    function showList () {
+    if (messageList.hasChildNodes()) { 
+        messageSection.hidden = false;
+     } else {messageSection.hidden = true;}
+    };
     
     const removeButton = document.createElement("button");
     removeButton.innerText = "remove";
     removeButton.setAttribute("type", "button");
 
     removeButton.addEventListener("click", (event) => {
-        const entry = removeButton.parentNode;
+        const entry = event.target.parentNode;
         entry.remove();
         showList(); //hides list when all messages are removed
     });
@@ -63,7 +63,42 @@ function onSubmit(event){
     messageList.append(newMessage);
     showList();  //shows list when new message is added
 
-    document.querySelector('form[name="leave_message"]').reset();
+    event.target.reset();
 }
 
 messageForm.addEventListener("submit", onSubmit);
+
+// get repos from GitHub
+const getRepo = fetch("https://api.github.com/users/cryssw17/repos") 
+ .then( (response) => { 
+    if (!response.ok) { //checks if response is okay
+        throw new Error('Failed request');  //throws error if not okay
+    }
+    return response.json(); //if response okay, parses data from JSON string to JS objects
+     })
+
+// take JSON object and display repo name in project section
+ .then((repoData) => { 
+    const repositories = repoData;
+    console.log(repositories);  // logs repo array to console 
+
+    const projectSection = document.getElementById("projects"); 
+    const projectList = projectSection.querySelector("ul");
+
+    //loop through repo
+    for(let i = 0; i < repositories.length; i++) {  
+        const project = document.createElement("li"); //creates li item for project
+        project.innerHTML = `<a href="${repositories[i].html_url}" target="_blank" rel="noreferrer">${repositories[i].name}</a>`;  //sets li item text to repo name
+        projectList.appendChild(project); // adds item to list in project section
+    };
+  })
+ 
+  //handling for errors
+ .catch( (error) => { 
+    console.log("Failed to load repositories:", error); //if error caught, displays error message to the console 
+    const projectSection = document.getElementById("projects"); 
+    const errorMessage = document.createElement('p'); //create element to store user displayed error message
+    errorMessage.innerHTML = `Oops! ${error}`; 
+    projectSection.append(errorMessage);  //adds error message to project section, displays message to the user
+ }); 
+
