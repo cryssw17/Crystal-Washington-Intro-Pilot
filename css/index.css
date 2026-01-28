@@ -117,6 +117,24 @@ h2 {
     color: rgb(6, 68, 6);
 }
 
+#skills ul {
+    display:flex;
+    align-items: center;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+#skills li {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    list-style: none;
+    margin: 5px;
+    padding: 20px;
+    border: 1px solid rgb(73, 11, 108);
+    box-shadow: 0px 3px 5px rgba(115, 24, 135, 0.5);
+    font-weight: bold;
+}
 
 #connect {
     text-align: center;
@@ -157,24 +175,6 @@ footer {
    text-align: center; 
 }
 
-#skills ul {
-    display:flex;
-    align-items: center;
-    justify-content:space-evenly;
-    flex-wrap: wrap;
-    padding: 10px;
-}
-
-#skills li {
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
-    list-style: none;
-    margin: 5px;
-    padding: 20px;
-    border: 2px solid rgb(73, 11, 108);
-    box-shadow: 0px 3px 5px rgba(115, 24, 135, 0.5);
-    font-weight: bold;
-}
 
 form {
     background-color:rgba(255, 255, 255, 0.4);
@@ -221,20 +221,30 @@ form button{
 
 #projects ul{
     display: grid;
+    grid-template-columns: repeat(auto-fit, 140px);
     gap: 10px;
-    row-gap: 10px;
+    list-style: none;
 }
 
 #projects li {
-    background-color: rgba(255, 255, 255, 0.4);
-    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+
+    min-height: 75px;
     padding: 10px;
-    width: 200px;
+    box-sizing: border-box;
+
+    background-color: rgba(255, 255, 255, 0.4);
     border-radius: 5px;
     border: 2px solid rgb(90, 2, 109);
     box-shadow: 0px 3px 5px rgb(90, 2, 109, 0.5);
 }
 
-
+#projects li:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    font-weight: bold;
+}
 
 
