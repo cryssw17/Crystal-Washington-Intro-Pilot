@@ -68,8 +68,8 @@ function onSubmit(event){
 
 messageForm.addEventListener("submit", onSubmit);
 
-// get repos from GitHub
-const getRepo = fetch("https://api.github.com/users/cryssw17/repos") 
+// get repo list from GitHub
+const repoRequest = fetch("https://api.github.com/users/cryssw17/repos") 
  .then( (response) => { 
     if (!response.ok) { //checks if response is okay
         throw new Error('Failed request');  //throws error if not okay
@@ -98,7 +98,7 @@ const getRepo = fetch("https://api.github.com/users/cryssw17/repos")
     console.log("Failed to load repositories:", error); //if error caught, displays error message to the console 
     const projectSection = document.getElementById("projects"); 
     const errorMessage = document.createElement('p'); //create element to store user displayed error message
-    errorMessage.innerHTML = `Oops! ${error}`; 
+    errorMessage.textContent = `Oops! Couldn't load projects right now. Please try again later.`; 
     projectSection.append(errorMessage);  //adds error message to project section, displays message to the user
  }); 
 

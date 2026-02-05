@@ -224,6 +224,8 @@ form button{
     grid-template-columns: repeat(auto-fit, 140px);
     gap: 10px;
     list-style: none;
+    justify-content: center;
+    padding-left:0;
 }
 
 #projects li {

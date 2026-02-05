@@ -1,0 +1,105 @@
+body {
+    background-color: #094119; 
+    color: #5D4E37; 
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #A0522D; 
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    margin: 30px 0;
+    color: #d2c2a9; 
+}
+
+/* flexbox for sections*/
+.sections-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+section {
+    width: 500px;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    border: 2px solid #5D4E37;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Section headings */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #31271b; 
+    text-decoration: underline;
+    margin-bottom: 15px;
+}
+
+button {
+    display: block;
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    margin: 15px auto;
+    background-color: #A0522D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #3A2F1F;
+}
+
+/* styles for the result sections displayed after button clicks */
+#breedResult, #factsResult {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    text-align: center;
+}
+
+#dogImage {
+    display: block;
+    margin: 15px auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid #5D4E37;
+}
+
+/* text within factsResult  */
+#factsContent p {
+    margin-bottom: 10px 0 15px 0;
+    text-align: center;
+}
+
+
+   
+    
