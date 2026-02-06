@@ -114,7 +114,7 @@ function getFactsRequest(breedId) {
         const errorMessage = document.createElement("p");
         errorMessage.textContent = "Sorry, couldn't load facts for this breed right now."
 
-        factsContent.append(errorMessage);
+        factsResult.append(errorMessage);
     })
 };
 
