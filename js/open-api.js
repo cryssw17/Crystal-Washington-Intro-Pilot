@@ -1,6 +1,13 @@
-//Dom selection for buttons
+//Dom selections
 const breedBtn = document.querySelector("#breedBtn");
 const factsBtn = document.querySelector(".factsBtn");
+
+const dogImage = document.getElementById("dogImage");
+const breedName = document.getElementById("breedName");
+const breedMessage = document.getElementById("breedMessage");
+
+const factsMessage = document.getElementById("factsMessage");
+const factsResult = document.getElementById("factsResult");
 
 const apiKey = "live_BK89XWeuiRa4sWOLReXE4aYZAt1NQj5KOXTy0ZQVVp3DYVNQFAuGQg1ftuQTPWft";
 let breedId = null;
@@ -17,7 +24,7 @@ function getDogRequest(){
 
     .then((response) => {  //checks if response is okay
         if (!response.ok)  {
-            throw new Error('Failed Request') //throws error if not
+            throw new Error(`Failed Request: ${response.status} ${response.statusText}`) //throws error if not
         }
         return response.json(); //returns parsed JSON object
         })
@@ -32,40 +39,33 @@ function getDogRequest(){
         const breed = dogData.breeds[0].name //gets the dog breed
         breedId = dogData.breeds[0].id;
 
-        const dogImage = document.querySelector("#dogImage");  
         dogImage.src = image  //set <img> to random dog image
         dogImage.alt = `An image of a ${breed}`;
-
-
-        const dogBreed = document.getElementById("breedName");
-        dogBreed.innerText = breed; //sets inner text to that dogs breed. 
+        
+        breedName.innerText = breed; //sets inner text to that dogs breed. 
     })
     
     //.catch to handle errors 
     .catch( (error) => { 
         console.log("Failed to load dog image:", error)
 
-        const breedResult = document.getElementById("breedResult");
-        const errorMessage = document.createElement("p");
-        errorMessage.textContent = "Sorry, couldn't load a dog right now. Please try again later.";
-        breedResult.append(errorMessage);
+        breedMessage.textContent = "Sorry, couldn't load a dog right now. Please try again later.";
+        
     })
 }
 
 function handleBreedClick () {
-
       const breedResult = document.getElementById("breedResult");
-      const factsResult = document.getElementById("factsResult");
-      const factsContent = document.getElementById("factsContent");
-      const dogImage = document.getElementById("dogImage");
-      const breedName = document.getElementById("breedName");
-
+      
     // clears old breed content
       dogImage.src = "";
       breedName.textContent = "";
 
-    // resets facts
-      factsContent.textContent = "";
+    // resets any error messages
+      breedMessage.textContent = "";
+      factsMessage.textContent = "";
+      
+    //hides facts section
       factsResult.hidden = true;
 
     // show breed section
@@ -78,7 +78,6 @@ function handleBreedClick () {
 //event listener for breeds btn
  breedBtn.addEventListener("click", handleBreedClick);
 
-
 //Facts Section
     
 //fetch request for facts btn 
@@ -90,7 +89,7 @@ function getFactsRequest(breedId) {
     })
     .then((response) => {
         if (!response.ok) {
-            throw new Error('Failed Request');
+            throw new Error(`Failed Request: ${response.status} ${response.statusText}` );
         }
         return response.json();
     })
@@ -98,30 +97,52 @@ function getFactsRequest(breedId) {
         const factsData = data;
         console.log(factsData);
 
-        //adds facts to each catgory 
-        document.getElementById("description").innerHTML= `<strong>Description:</strong> ${factsData.description}`;
-        document.getElementById("lifeSpan").innerHTML = `<strong>Life Span:</strong> ${factsData.life_span}`;
-        document.getElementById("temperament").innerHTML = `<strong>Temperament:</strong> ${factsData.temperament}`;
-        
+        const description = document.getElementById("description");
+        const lifeSpan = document.getElementById("lifeSpan");
+        const temperament = document.getElementById("temperament");
+
+        //checks for and adds description info
+        if(factsData.description) {
+            description.innerHTML = `<strong>Description:</strong> ${factsData.description}`;
+        } else {
+            description.innerHTML = '<strong>Description:</strong> Sorry, no description info available right now.'
+        }
+
+        //checks for and adds life span info
+        if(factsData.life_span){
+            lifeSpan.innerHTML = `<strong>Life Span:</strong> ${factsData.life_span}`;
+        } else {
+            lifeSpan.innerHTML = '<strong>Life Span:</strong> Sorry, no life span info available right now.'
+        }
+
+        //checks for and adds temperament info
+        if(factsData.temperament) {
+            temperament.innerHTML = `<strong>Temperament:</strong> ${factsData.temperament}`;
+        } else {
+            temperament.innerHTML = '<strong>Temperament:</strong> Sorry, no temperament info available right now.'
+        } 
     })
 
     //handle errors with facts
     .catch ( (error) => {
         console.log("Failed to load dog facts:", error);
 
-        const factsResult = document.getElementById("factsResult");
+        factsMessage.textContent = "Sorry, couldn't load facts for this breed right now."
 
-        const errorMessage = document.createElement("p");
-        errorMessage.textContent = "Sorry, couldn't load facts for this breed right now."
-
-        factsResult.append(errorMessage);
+        factsResult.hidden = true;
     })
 };
 
 //fn handleFactClick
    //logic for hiding factsResults until factsBtn clicked
 function handleFactClick() {
-    const factsResult = document.getElementById("factsResult");
+    console.log("breedId at click:", breedId);
+    console.log("facts URL:",`https://api.thedogapi.com/v1/breeds/${breedId}` );
+    //handles if user clicks facts button before getting a breed
+    if (!breedId) {
+        factsMessage.textContent = "Click button under 'Discover a Breed!' first!";
+        return;
+    }
 
 //clear old facts
     document.getElementById("description").textContent = "";
