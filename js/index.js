@@ -50,8 +50,9 @@ function onSubmit(event){
     };
     
     const removeButton = document.createElement("button");
-    removeButton.innerText = "remove";
-    removeButton.setAttribute("type", "button");
+    removeButton.innerText = "Remove";
+    removeButton.type = "button";
+    removeButton.classList.add("remove-btn");
 
     removeButton.addEventListener("click", (event) => {
         const entry = event.target.parentNode;
@@ -68,8 +69,8 @@ function onSubmit(event){
 
 messageForm.addEventListener("submit", onSubmit);
 
-// get repos from GitHub
-const getRepo = fetch("https://api.github.com/users/cryssw17/repos") 
+// get repo list from GitHub
+const repoRequest = fetch("https://api.github.com/users/cryssw17/repos") 
  .then( (response) => { 
     if (!response.ok) { //checks if response is okay
         throw new Error('Failed request');  //throws error if not okay
@@ -88,8 +89,13 @@ const getRepo = fetch("https://api.github.com/users/cryssw17/repos")
     //loop through repo
     for(let i = 0; i < repositories.length; i++) {  
         const project = document.createElement("li"); //creates li item for project
-        project.innerHTML = `<a href="${repositories[i].html_url}" target="_blank" rel="noreferrer">${repositories[i].name}</a>`;  //sets li item text to repo name
-        projectList.appendChild(project); // adds item to list in project section
+        const projectName = document.createElement("p"); //creates li for project name
+        projectName.innerHTML = `<a href="${repositories[i].html_url}" target="_blank" rel="noreferrer">${repositories[i].name}</a>`;  //sets li item text to repo name
+        project.appendChild(projectName); // adds item to list in project section
+        const desc = document.createElement("p"); //creates li item for project description
+        desc.textContent = `${repositories[i].description}`;
+        project.appendChild(desc);
+        projectList.appendChild(project);
     };
   })
  
@@ -97,8 +103,16 @@ const getRepo = fetch("https://api.github.com/users/cryssw17/repos")
  .catch( (error) => { 
     console.log("Failed to load repositories:", error); //if error caught, displays error message to the console 
     const projectSection = document.getElementById("projects"); 
-    const errorMessage = document.createElement('p'); //create element to store user displayed error message
-    errorMessage.innerHTML = `Oops! ${error}`; 
-    projectSection.append(errorMessage);  //adds error message to project section, displays message to the user
+
+    let errorMessage = document.querySelector(".projects-error") //declaring variable for error messages 
+
+    //check for if error message element exists already, if not creates one
+    if(!errorMessage){
+        errorMessage = document.createElement('p'); //create element to store user displayed error message
+        errorMessage.classList.add("projects-error");
+        projectSection.append(errorMessage);  //adds error message to project section, displays message to the user
+    }
+
+    errorMessage.textContent = `Oops! Couldn't load projects right now. Please try again later.`; 
  }); 
 

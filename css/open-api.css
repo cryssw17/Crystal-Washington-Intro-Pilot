@@ -1,0 +1,117 @@
+body {
+    background-color: #094119; 
+    color: #e6e0d5; 
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #2f6b3f; 
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: rgb(230, 221, 221);
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black;
+    border-radius: 8px;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    margin: 30px 0;
+    color: #d2c2a9; 
+}
+
+/* flexbox for sections*/
+.sections-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+section {
+    width: 500px;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    border: 2px solid #2f6b3f;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Section headings */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #bed6be;  
+    text-decoration: underline;
+    margin-bottom: 15px;
+}
+
+button {
+    display: block;
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    margin: 15px auto;
+    background-color: #2f6b3f;
+    color: #f3f0ea;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #1f4d2c;
+}
+
+/* styles for the result sections displayed after button clicks */
+#breedResult, #factsResult {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    text-align: center;
+}
+
+#dogImage {
+    display: block;
+    margin: 15px auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid #5D4E37;
+}
+
+/* text within factsResult  */
+#factsResult p {
+    margin: 10px 0 15px 0;
+    text-align: center;
+}
+
+#factsMessage {
+    text-align: center;
+    background-color:rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#breedResult, 
+#breedMessage,
+#factsResult,
+#factsMessage {
+    color: #1f2d1f;
+}
+    

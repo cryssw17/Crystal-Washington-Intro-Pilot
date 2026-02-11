@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Open API Project page">
+    <link rel="stylesheet" href="css/open-api.css">
+    <title>Random Dog Breed Facts Generator</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Back to Portfolio</a>
+    </nav>
+
+    <h1>Random Dog Generator</h1>
+
+    <!--//Section 1-- populates random dog breed and image -->
+    <div class="sections-wrapper">
+    <section id="breeds">
+    <!-- section heading for dog image grab -->
+    <h2 class="section-header">Discover a Breed!</h2>
+    <!-- button to grab image url and breed name from api and display (titled something like "click here!") this is 1st GET request -->
+    <button id="breedBtn">Click here!</button>
+    <div id="breedResult" hidden> <!-- hidden until breedBtn clicked-->
+    <p id="breedMessage"></p>
+    <img id="dogImage" src="" alt="a photo of a dog" width="300" height="300"> <!--image of dog breed-->
+    <h3>BREED:</h3> 
+    <p id="breedName"></p><!--displays breed name -->
+    </div>
+    </section>
+
+    <section id="facts">
+    <!-- //Section 2-- populates facts about that breed <- doesn't show until breedBtn first clicked / subquesently resets when clicked again
+    //section heading -->
+    <h2 class="section-header">Want to know more about this breed?</h2>
+    <!-- 2nd button to grab a set of facts about breed displayed (possibly from the breed endpoint) this is the 2nd GET request  -->
+    <button class="factsBtn">Get Facts!</button> <!-- hidden until breedBtn clicked -->
+    <p id="factsMessage"></p>
+    <div id="factsResult" hidden> <!--hidden until factsBtn clicked -->
+    <h3>FACTS:</h3> 
+    <div id="factsContent">
+        <p id="description"></p>
+        <p id="lifeSpan"></p>
+        <p id="temperament"></p>
+    </div>
+    </div>
+    </section>
+    </div>
+ <script src="js/open-api.js"></script> 
+</body>
+</html>
